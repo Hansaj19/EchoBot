@@ -162,11 +162,13 @@ An automated testing framework comprising 16 unit, integration, and API tests wa
 
 ## 5. Deployment and Hosting Strategy
 
-The application is structured for cloud hosting on Render or Railway:
+The application is deployed live and publicly accessible:
+- **Live Application URL:** https://echobot-e3w0.onrender.com
+- **Source Code Repository:** https://github.com/Hansaj19/EchoBot
 - **Application Server:** Gunicorn WSGI server bound to dynamic port `0.0.0.0:$PORT` configured with 1 worker and 4 threads to minimize memory overhead.
 - **Health Monitoring:** Dedicated `/health` route returning HTTP 200 and model status for container orchestration liveness checks.
 - **Build Automation:** Infrastructure-as-code configuration in `render.yaml` executing automated dependency installation and model artifact compilation.
-- **Repository Organization:** Git repository configured with `.gitignore`, `Procfile`, `requirements.txt`, and full source code ready for version control hosting on GitHub.
+- **Repository Organization:** Git repository configured with `.gitignore`, `Procfile`, `requirements.txt`, and full source code hosted on GitHub.
 
 ---
 

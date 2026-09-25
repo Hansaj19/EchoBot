@@ -2,6 +2,7 @@
 
 A voice-enabled interactive chatbot powered by Speech Recognition and a Deep Learning Intent Classification Neural Network. Built with Python, Flask, TensorFlow/Keras, and modern Web APIs.
 
+**Live Application Link:** [https://echobot-e3w0.onrender.com](https://echobot-e3w0.onrender.com)
 ---
 
 ## Key Features
