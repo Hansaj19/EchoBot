@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EchoBot - Voice-Enabled AI Chatbot</title>
+  <meta name="description" content="An online voice-enabled chatbot powered by Speech Recognition and Deep Learning intent classification in Apple iMessage style.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <!-- Ambient Corner Glass Bubbles -->
+  <div class="ambient-background">
+    <div class="glass-bubble bubble-top-left"></div>
+    <div class="glass-bubble bubble-top-right"></div>
+    <div class="glass-bubble bubble-bottom-left"></div>
+    <div class="glass-bubble bubble-bottom-right"></div>
+    <div class="glass-bubble bubble-center-glow"></div>
+  </div>
+
+  <main class="imessage-container">
+    <!-- Apple iMessage Header -->
+    <header class="imessage-header">
+      <div class="header-left">
+        <button class="back-button" title="Back" aria-label="Back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          <span class="back-text">Chats</span>
+        </button>
+      </div>
+
+      <div class="header-center">
+        <div class="contact-avatar-wrapper">
+          <div class="contact-avatar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+              <circle cx="12" cy="5" r="2"></circle>
+              <path d="M12 7v4"></path>
+              <line x1="8" y1="16" x2="8.01" y2="16"></line>
+              <line x1="16" y1="16" x2="16.01" y2="16"></line>
+            </svg>
+          </div>
+          <span class="active-badge"></span>
+        </div>
+        <div class="contact-title-group">
+          <div class="contact-name-row">
+            <h1 class="contact-name">EchoBot AI</h1>
+            <svg class="chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </div>
+          <span class="contact-status">iMessage • Speech &amp; Deep Learning</span>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <button id="tts-toggle-btn" class="header-action-btn active" title="Toggle Voice Output (TTS)" aria-label="Toggle Voice Output">
+          <svg class="action-icon icon-sound-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+          <svg class="action-icon icon-sound-off" style="display:none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+        </button>
+
+        <button id="clear-chat-btn" class="header-action-btn" title="Clear Conversation" aria-label="Clear Conversation">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Status / Notification Sub-Bar -->
+    <div id="status-bar" class="imessage-status-bar">
+      <span class="status-indicator-dot"></span>
+      <span id="status-text">iMessage with EchoBot AI</span>
+    </div>
+
+    <!-- Active Voice Recording Visualizer Overlay -->
+    <div id="voice-overlay" class="voice-overlay hidden">
+      <div class="voice-card">
+        <div class="waveform-container">
+          <span class="wave-bar"></span>
+          <span class="wave-bar"></span>
+          <span class="wave-bar"></span>
+          <span class="wave-bar"></span>
+          <span class="wave-bar"></span>
+          <span class="wave-bar"></span>
+          <span class="wave-bar"></span>
+          <span class="wave-bar"></span>
+        </div>
+        <p id="live-speech-preview" class="live-speech-preview">Listening... Speak now</p>
+        <button id="stop-listening-btn" class="stop-listening-btn">Done</button>
+      </div>
+    </div>
+
+    <!-- Message Stream -->
+    <div id="chat-messages" class="chat-messages" role="log" aria-live="polite">
+      <!-- Timestamp Divider -->
+      <div class="date-divider">
+        <span>Today</span>
+      </div>
+
+      <!-- Welcome Bot Message in Apple Gray -->
+      <div class="message bot-message">
+        <div class="message-avatar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+            <circle cx="12" cy="5" r="2"></circle>
+            <path d="M12 7v4"></path>
+            <line x1="8" y1="16" x2="8.01" y2="16"></line>
+            <line x1="16" y1="16" x2="16.01" y2="16"></line>
+          </svg>
+        </div>
+        <div class="message-content">
+          <div class="message-sender-label">EchoBot AI</div>
+          <div class="message-text">
+            Hello! I am your <strong>Voice-Enabled AI Assistant</strong>. 
+            I use <strong>Speech Recognition</strong> to listen to your voice and a <strong>Deep Learning Model</strong> to classify intent and respond.
+          </div>
+          <div class="message-meta-footer">
+            <span class="badge badge-system">Deep Learning Ready</span>
+            <button class="speak-msg-btn" title="Listen to this message" data-text="Hello! I am your Voice-Enabled AI Assistant. Tap the microphone or type to talk with me.">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07" fill="none" stroke="currentColor" stroke-width="2"></path>
+              </svg>
+              <span>Play</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Prompts Chips -->
+    <div class="quick-prompts">
+      <span class="prompts-label">Suggestions:</span>
+      <button class="chip" data-query="What can you do?">What can you do?</button>
+      <button class="chip" data-query="Tell me a joke">Tell me a joke</button>
+      <button class="chip" data-query="Who built you?">Who built you?</button>
+      <button class="chip" data-query="What time is it?">What time is it?</button>
+      <button class="chip" data-query="How do I use voice?">How do I use voice?</button>
+    </div>
+
+    <!-- Apple iMessage Bottom Input Bar -->
+    <footer class="imessage-footer">
+      <form id="chat-form" class="imessage-input-bar">
+        <!-- Plus Attachment Icon -->
+        <button type="button" class="plus-btn" title="More Options" aria-label="More Options">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </button>
+
+        <!-- Voice Microphone Trigger -->
+        <button type="button" id="mic-btn" class="mic-button" title="Speak via Microphone" aria-label="Start Voice Input">
+          <div class="mic-pulse-ring"></div>
+          <svg class="mic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" y1="19" x2="12" y2="22"></line>
+            <line x1="8" y1="22" x2="16" y2="22"></line>
+          </svg>
+        </button>
+
+        <!-- iMessage Input Field -->
+        <div class="input-pill-wrapper">
+          <input 
+            type="text" 
+            id="user-input" 
+            class="imessage-input" 
+            placeholder="iMessage" 
+            autocomplete="off"
+            aria-label="iMessage input"
+          >
+        </div>
+
+        <!-- Apple Blue Upward Send Button -->
+        <button type="submit" id="send-btn" class="send-button" title="Send iMessage" aria-label="Send iMessage">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+          </svg>
+        </button>
+      </form>
+    </footer>
+  </main>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

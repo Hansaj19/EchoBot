@@ -1,0 +1,8 @@
+flask>=3.0.0
+SpeechRecognition>=3.14.0
+gunicorn>=21.2.0
+tensorflow>=2.15.0
+keras>=3.0.0
+numpy>=1.26.0
+audioop-lts>=0.2.0; python_version >= '3.13'
+standard-aifc>=3.13.0; python_version >= '3.13'

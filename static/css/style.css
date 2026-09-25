@@ -1,0 +1,936 @@
+/* Apple iMessage Blue & White Theme with Ambient Corner Glass Bubbles */
+
+:root {
+  /* Apple iOS Palette */
+  --apple-blue: #007aff;
+  --apple-blue-hover: #0062cc;
+  --apple-blue-gradient: linear-gradient(180deg, #0b84ff 0%, #007aff 100%);
+  --apple-blue-glow: rgba(0, 122, 255, 0.25);
+
+  --apple-incoming-bg: #e9e9eb;
+  --apple-incoming-text: #000000;
+  --apple-outgoing-bg: #007aff;
+  --apple-outgoing-text: #ffffff;
+
+  --apple-bg-base: #f8fafc;
+  --apple-card-bg: rgba(255, 255, 255, 0.88);
+  --apple-header-bg: rgba(255, 255, 255, 0.82);
+  --apple-footer-bg: rgba(255, 255, 255, 0.85);
+
+  --apple-border: rgba(0, 0, 0, 0.08);
+  --apple-border-input: #d1d1d6;
+  --apple-text-primary: #000000;
+  --apple-text-secondary: #8e8e93;
+  --apple-text-muted: #aeaeb2;
+
+  --apple-green: #34c759;
+  --apple-red: #ff3b30;
+
+  --radius-bubble: 20px;
+  --radius-pill: 9999px;
+  --radius-card: 28px;
+
+  --shadow-card: 0 25px 60px -15px rgba(0, 122, 255, 0.12), 0 10px 30px -10px rgba(0, 0, 0, 0.04);
+  --transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Plus Jakarta Sans", "Helvetica Neue", sans-serif;
+  background-color: var(--apple-bg-base);
+  color: var(--apple-text-primary);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 1.25rem;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ambient Corner Glass Bubbles (White background with soft blurred blue bubbles) */
+.ambient-background {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f4f6fb 100%);
+}
+
+.glass-bubble {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Corner Blue Bubbles with Soft Glass Blur */
+.bubble-top-left {
+  width: 480px;
+  height: 480px;
+  top: -140px;
+  left: -120px;
+  background: radial-gradient(circle, rgba(0, 122, 255, 0.35) 0%, rgba(90, 200, 250, 0.2) 60%, transparent 80%);
+  filter: blur(85px);
+  animation: floatOrb 12s ease-in-out infinite alternate;
+}
+
+.bubble-top-right {
+  width: 440px;
+  height: 440px;
+  top: -100px;
+  right: -100px;
+  background: radial-gradient(circle, rgba(0, 113, 227, 0.32) 0%, rgba(0, 199, 190, 0.18) 60%, transparent 80%);
+  filter: blur(90px);
+  animation: floatOrb 14s ease-in-out infinite alternate-reverse;
+}
+
+.bubble-bottom-left {
+  width: 520px;
+  height: 520px;
+  bottom: -150px;
+  left: -120px;
+  background: radial-gradient(circle, rgba(0, 122, 255, 0.30) 0%, rgba(88, 86, 214, 0.18) 60%, transparent 80%);
+  filter: blur(95px);
+  animation: floatOrb 16s ease-in-out infinite alternate;
+}
+
+.bubble-bottom-right {
+  width: 500px;
+  height: 500px;
+  bottom: -140px;
+  right: -120px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.35) 0%, rgba(0, 122, 255, 0.25) 60%, transparent 80%);
+  filter: blur(90px);
+  animation: floatOrb 13s ease-in-out infinite alternate-reverse;
+}
+
+.bubble-center-glow {
+  width: 600px;
+  height: 600px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(240, 246, 255, 0.4) 60%, transparent 80%);
+  filter: blur(60px);
+  opacity: 0.8;
+}
+
+@keyframes floatOrb {
+  0% {
+    transform: translateY(0px) scale(1);
+  }
+
+  100% {
+    transform: translateY(25px) scale(1.05);
+  }
+}
+
+/* Main iMessage Card Container */
+.imessage-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 820px;
+  height: 92vh;
+  max-height: 900px;
+  background: var(--apple-card-bg);
+  backdrop-filter: blur(35px) saturate(190%);
+  -webkit-backdrop-filter: blur(35px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: var(--shadow-card);
+  border-radius: var(--radius-card);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Apple iMessage Header */
+.imessage-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 1.25rem;
+  background: var(--apple-header-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--apple-border);
+  z-index: 15;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: transparent;
+  border: none;
+  color: var(--apple-blue);
+  cursor: pointer;
+  padding: 0.35rem 0.5rem 0.35rem 0;
+  border-radius: 8px;
+  transition: var(--transition);
+}
+
+.back-button svg {
+  width: 22px;
+  height: 22px;
+}
+
+.back-text {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.back-button:hover {
+  opacity: 0.75;
+}
+
+.header-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  text-align: center;
+}
+
+.contact-avatar-wrapper {
+  position: relative;
+  width: 44px;
+  height: 44px;
+}
+
+.contact-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #007aff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 122, 255, 0.25);
+}
+
+.contact-avatar svg {
+  width: 22px;
+  height: 22px;
+}
+
+.active-badge {
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--apple-green);
+  border: 2px solid #ffffff;
+}
+
+.contact-title-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-name-row {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.contact-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--apple-text-primary);
+  letter-spacing: -0.01em;
+}
+
+.chevron-right {
+  width: 11px;
+  height: 11px;
+  color: var(--apple-text-secondary);
+}
+
+.contact-status {
+  font-size: 11px;
+  color: var(--apple-text-secondary);
+  font-weight: 400;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header-action-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--apple-border);
+  background: #ffffff;
+  color: var(--apple-text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.header-action-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.header-action-btn:hover {
+  background: #f2f2f7;
+  color: var(--apple-blue);
+  border-color: rgba(0, 122, 255, 0.3);
+}
+
+.header-action-btn.active {
+  background: rgba(0, 122, 255, 0.1);
+  color: var(--apple-blue);
+  border-color: rgba(0, 122, 255, 0.3);
+}
+
+/* Status / Typing Sub-Bar */
+.imessage-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0.4rem 1rem;
+  background: rgba(248, 250, 252, 0.7);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  font-size: 11px;
+  color: var(--apple-text-secondary);
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.status-indicator-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--apple-green);
+  transition: var(--transition);
+}
+
+.imessage-status-bar.listening {
+  background: rgba(255, 59, 48, 0.08);
+  color: var(--apple-red);
+}
+
+.imessage-status-bar.listening .status-indicator-dot {
+  background: var(--apple-red);
+  animation: pulse-dot 1.2s infinite;
+}
+
+.imessage-status-bar.processing {
+  background: rgba(0, 122, 255, 0.08);
+  color: var(--apple-blue);
+}
+
+.imessage-status-bar.processing .status-indicator-dot {
+  background: var(--apple-blue);
+  animation: pulse-dot 1s infinite;
+}
+
+/* Voice Overlay Visualizer (iOS style audio banner) */
+.voice-overlay {
+  position: absolute;
+  top: 95px;
+  left: 0;
+  right: 0;
+  z-index: 25;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: center;
+  animation: slideDown 0.25s ease-out;
+}
+
+.voice-overlay.hidden {
+  display: none;
+}
+
+.voice-card {
+  width: 100%;
+  max-width: 500px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(0, 122, 255, 0.25);
+  box-shadow: 0 15px 35px -5px rgba(0, 122, 255, 0.2);
+  border-radius: 20px;
+  padding: 1.2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.waveform-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 32px;
+}
+
+.wave-bar {
+  width: 3.5px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--apple-blue);
+  animation: wavePulse 1.2s infinite ease-in-out;
+}
+
+.wave-bar:nth-child(1) {
+  animation-delay: 0.0s;
+}
+
+.wave-bar:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.wave-bar:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.wave-bar:nth-child(4) {
+  animation-delay: 0.45s;
+}
+
+.wave-bar:nth-child(5) {
+  animation-delay: 0.6s;
+}
+
+.wave-bar:nth-child(6) {
+  animation-delay: 0.45s;
+}
+
+.wave-bar:nth-child(7) {
+  animation-delay: 0.3s;
+}
+
+.wave-bar:nth-child(8) {
+  animation-delay: 0.15s;
+}
+
+.live-speech-preview {
+  font-size: 14px;
+  color: var(--apple-text-primary);
+  font-style: italic;
+  text-align: center;
+  max-width: 90%;
+}
+
+.stop-listening-btn {
+  background: var(--apple-blue);
+  border: none;
+  color: white;
+  padding: 0.4rem 1.2rem;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.stop-listening-btn:hover {
+  background: var(--apple-blue-hover);
+}
+
+/* Chat Messages Stream */
+.chat-messages {
+  flex: 1;
+  padding: 1.25rem 1.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  scroll-behavior: smooth;
+  background: transparent;
+}
+
+.chat-messages::-webkit-scrollbar {
+  width: 5px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: var(--radius-pill);
+}
+
+.date-divider {
+  display: flex;
+  justify-content: center;
+  margin: 0.5rem 0 0.8rem;
+}
+
+.date-divider span {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--apple-text-secondary);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* Message Item */
+.message {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 78%;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.message.user-message {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.message.bot-message {
+  align-self: flex-start;
+}
+
+.message-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e5e5ea;
+  color: #007aff;
+  margin-top: 18px;
+  /* align with bubble bottom */
+}
+
+.message.user-message .message-avatar {
+  display: none;
+  /* In iOS iMessage, user doesn't see their own avatar */
+}
+
+.message-avatar svg {
+  width: 15px;
+  height: 15px;
+}
+
+.message-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.message-sender-label {
+  font-size: 11px;
+  color: var(--apple-text-secondary);
+  margin-left: 12px;
+  font-weight: 500;
+}
+
+.message.user-message .message-sender-label {
+  display: none;
+}
+
+/* Authentic Apple iMessage Bubbles */
+.message-text {
+  padding: 0.65rem 1rem;
+  font-size: 15.5px;
+  line-height: 1.38;
+  word-break: break-word;
+  position: relative;
+  letter-spacing: -0.01em;
+}
+
+/* Outgoing (User) = Apple iMessage Vibrant Blue */
+.message.user-message .message-text {
+  background: var(--apple-blue-gradient);
+  color: var(--apple-outgoing-text);
+  border-radius: 19px 19px 4px 19px;
+  box-shadow: 0 1px 3px rgba(0, 122, 255, 0.25);
+}
+
+/* Incoming (Bot) = Apple iMessage Light Gray */
+.message.bot-message .message-text {
+  background: var(--apple-incoming-bg);
+  color: var(--apple-incoming-text);
+  border-radius: 19px 19px 19px 4px;
+}
+
+/* Meta Footer (Badges, Delivered status, Audio playback) */
+.message-meta-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 2px;
+}
+
+.message.user-message .message-meta-footer {
+  justify-content: flex-end;
+  margin-right: 4px;
+}
+
+.message.bot-message .message-meta-footer {
+  margin-left: 6px;
+}
+
+.delivered-tag {
+  font-size: 11px;
+  color: var(--apple-text-secondary);
+  font-weight: 400;
+}
+
+.badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: var(--radius-pill);
+}
+
+.badge-voice {
+  background: rgba(0, 122, 255, 0.1);
+  color: var(--apple-blue);
+}
+
+.badge-system {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--apple-text-secondary);
+}
+
+.badge-intent {
+  background: rgba(0, 122, 255, 0.09);
+  color: var(--apple-blue);
+  border: 1px solid rgba(0, 122, 255, 0.2);
+}
+
+.badge-confidence {
+  background: rgba(52, 199, 89, 0.12);
+  color: #15803d;
+  border: 1px solid rgba(52, 199, 89, 0.25);
+}
+
+.speak-msg-btn {
+  background: #ffffff;
+  border: 1px solid var(--apple-border);
+  color: var(--apple-blue);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.speak-msg-btn svg {
+  width: 11px;
+  height: 11px;
+}
+
+.speak-msg-btn:hover {
+  background: rgba(0, 122, 255, 0.1);
+}
+
+/* Quick Prompts Chips (iOS Capsule Style) */
+.quick-prompts {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.6);
+  border-top: 1px solid var(--apple-border);
+}
+
+.quick-prompts::-webkit-scrollbar {
+  display: none;
+}
+
+.prompts-label {
+  font-size: 11px;
+  color: var(--apple-text-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.chip {
+  background: #ffffff;
+  border: 1px solid #e5e5ea;
+  color: var(--apple-blue);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.chip:hover {
+  background: rgba(0, 122, 255, 0.08);
+  border-color: var(--apple-blue);
+  transform: translateY(-1px);
+}
+
+/* Apple iMessage Bottom Input Bar */
+.imessage-footer {
+  padding: 0.75rem 1.25rem 0.9rem;
+  background: var(--apple-footer-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--apple-border);
+}
+
+.imessage-input-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  position: relative;
+}
+
+/* Plus Icon Button */
+.plus-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: #e9e9eb;
+  color: #8e8e93;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.plus-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.plus-btn:hover {
+  background: #d1d1d6;
+  color: #000000;
+}
+
+/* Voice Microphone Button */
+.mic-button {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: #e9e9eb;
+  color: var(--apple-blue);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.mic-button:hover {
+  background: rgba(0, 122, 255, 0.15);
+  transform: scale(1.05);
+}
+
+.mic-icon {
+  width: 19px;
+  height: 19px;
+  position: relative;
+  z-index: 2;
+}
+
+.mic-pulse-ring {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px solid var(--apple-blue);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mic-button.recording {
+  background: var(--apple-red);
+  color: white;
+}
+
+.mic-button.recording .mic-pulse-ring {
+  border-color: var(--apple-red);
+  animation: recordingPulse 1.3s infinite cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Pill Input Field */
+.input-pill-wrapper {
+  flex: 1;
+  position: relative;
+}
+
+.imessage-input {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid var(--apple-border-input);
+  border-radius: 22px;
+  padding: 0.55rem 1rem;
+  color: var(--apple-text-primary);
+  font-family: inherit;
+  font-size: 15px;
+  outline: none;
+  transition: var(--transition);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.imessage-input::placeholder {
+  color: var(--apple-text-secondary);
+}
+
+.imessage-input:focus {
+  border-color: var(--apple-blue);
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.18);
+}
+
+/* Send Button: Apple Classic Blue Upward Circle */
+.send-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: var(--apple-blue);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: var(--transition);
+  box-shadow: 0 2px 6px rgba(0, 122, 255, 0.35);
+}
+
+.send-button svg {
+  width: 17px;
+  height: 17px;
+}
+
+.send-button:hover {
+  background: var(--apple-blue-hover);
+  transform: scale(1.05);
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-dot {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+}
+
+@keyframes recordingPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+@keyframes wavePulse {
+
+  0%,
+  100% {
+    height: 6px;
+  }
+
+  50% {
+    height: 26px;
+  }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 640px) {
+  body {
+    padding: 0;
+  }
+
+  .imessage-container {
+    height: 100vh;
+    max-height: none;
+    border-radius: 0;
+    border: none;
+  }
+
+  .imessage-header {
+    padding: 0.75rem 1rem;
+  }
+
+  .chat-messages {
+    padding: 1rem;
+  }
+
+  .imessage-footer {
+    padding: 0.6rem 0.85rem 0.85rem;
+  }
+
+  .message {
+    max-width: 86%;
+  }
+}

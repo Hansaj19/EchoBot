@@ -1,0 +1,263 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi",
+        "Hello",
+        "Hey",
+        "Good morning",
+        "Good afternoon",
+        "Good evening",
+        "Greetings",
+        "Hey there",
+        "Hi there",
+        "What's up",
+        "How are you",
+        "How's it going",
+        "Yo"
+      ],
+      "responses": [
+        "Hello! I am your voice-enabled AI assistant. How can I help you today?",
+        "Hi there! Nice to meet you. You can speak or type your question.",
+        "Greetings! I am ready to listen. How can I assist you?",
+        "Hey! Great to have you here. Feel free to tap the microphone or send a message."
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "Bye",
+        "Goodbye",
+        "See you later",
+        "Talk to you later",
+        "Farewell",
+        "Have a good day",
+        "Catch you later",
+        "Exit",
+        "Quit",
+        "Bye bye"
+      ],
+      "responses": [
+        "Goodbye! Have a wonderful day ahead.",
+        "See you later! Feel free to talk to me whenever you need assistance.",
+        "Farewell! Thank you for interacting with me.",
+        "Take care! Hope to chat with you again soon."
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": [
+        "Thanks",
+        "Thank you",
+        "Thank you very much",
+        "Thanks a lot",
+        "I appreciate it",
+        "Much appreciated",
+        "Thanks for your help",
+        "Awesome thanks"
+      ],
+      "responses": [
+        "You're very welcome! Glad I could help.",
+        "Anytime! Let me know if you need anything else.",
+        "Happy to help! It is my pleasure.",
+        "You are welcome! Feel free to ask more questions."
+      ]
+    },
+    {
+      "tag": "about",
+      "patterns": [
+        "Who are you",
+        "What is your name",
+        "Tell me about yourself",
+        "What are you",
+        "What is this application",
+        "Describe yourself"
+      ],
+      "responses": [
+        "I am a Voice-Enabled Chatbot built using Speech Recognition and Deep Learning.",
+        "My name is EchoBot, an intelligent voice-interactive assistant trained with deep neural networks.",
+        "I am an AI chatbot engineered to listen to voice queries, transcribe speech to text, and classify intents using deep learning."
+      ]
+    },
+    {
+      "tag": "capabilities",
+      "patterns": [
+        "What can you do",
+        "What are your features",
+        "How can you help me",
+        "What are your capabilities",
+        "What functions do you have",
+        "Tell me what you can do"
+      ],
+      "responses": [
+        "I can process voice input, transcribe speech accurately, understand your intent using deep learning, and respond both visually and via speech synthesis.",
+        "My key capabilities include real-time Speech-to-Text (STT), deep neural intent classification, interactive conversational responses, and audio speech synthesis.",
+        "You can speak to me through the microphone button or type questions. I can answer FAQs, provide project info, tell jokes, report time, and explain AI concepts."
+      ]
+    },
+    {
+      "tag": "voice_mode",
+      "patterns": [
+        "How do I use voice",
+        "How does speech recognition work",
+        "Can I speak to you",
+        "How do I use the microphone",
+        "Does voice work",
+        "Voice input instructions"
+      ],
+      "responses": [
+        "Simply click or tap the microphone button on the screen and speak clearly into your mic. Your speech will be converted to text and answered immediately!",
+        "To use voice, grant microphone permission in your browser, tap the glowing mic button, say your question, and release or pause when done.",
+        "Voice recognition uses the Web Speech API and backend speech processing to capture acoustic signals and transcribe them into text for deep learning classification."
+      ]
+    },
+    {
+      "tag": "creator",
+      "patterns": [
+        "Who made you",
+        "Who created you",
+        "Who is your developer",
+        "Who is the author",
+        "Who built this project",
+        "Who designed you"
+      ],
+      "responses": [
+        "I was developed by an AI Engineer specializing in speech and language processing and AI-DevOps.",
+        "This project was designed and built as a voice-enabled conversational AI system leveraging deep learning and modern cloud deployment.",
+        "I was engineered as part of an advanced AI project demonstrating speech recognition and deep learning intent classification."
+      ]
+    },
+    {
+      "tag": "time_date",
+      "patterns": [
+        "What time is it",
+        "Tell me the time",
+        "What is the current time",
+        "What day is today",
+        "What is today's date",
+        "What is the date"
+      ],
+      "responses": [
+        "You can see the current system time right here in our live session. Time is always ticking forward!",
+        "Check your device clock or header display for the exact local time and date.",
+        "It is always a great time to build AI applications!"
+      ]
+    },
+    {
+      "tag": "weather",
+      "patterns": [
+        "What is the weather like",
+        "Is it raining",
+        "How is the weather today",
+        "Tell me about the weather",
+        "Do I need an umbrella",
+        "What is the temperature outside"
+      ],
+      "responses": [
+        "I don't have access to live meteorological sensors right now, but I hope it is sunny and pleasant wherever you are!",
+        "For real-time local forecasts, check your favorite weather app. Don't forget your umbrella if it looks cloudy!",
+        "The digital weather in here is always 72 degrees and clear skies."
+      ]
+    },
+    {
+      "tag": "joke",
+      "patterns": [
+        "Tell me a joke",
+        "Make me laugh",
+        "Say something funny",
+        "Do you know any jokes",
+        "Tell another joke"
+      ],
+      "responses": [
+        "Why did the neural network go to school? Because it wanted to improve its gradient descent!",
+        "Why do programmers prefer dark mode? Because light attracts bugs!",
+        "There are 10 types of people in the world: those who understand binary, and those who don't.",
+        "Why was the computer cold? It left its Windows open!"
+      ]
+    },
+    {
+      "tag": "help",
+      "patterns": [
+        "Help",
+        "I need help",
+        "Can you help me",
+        "How to use this",
+        "Give me assistance",
+        "Instructions"
+      ],
+      "responses": [
+        "I am here to help! You can speak via the microphone or type any question into the input box below. Try asking 'What can you do?' or 'Tell me a joke'.",
+        "Need help? Tap the microphone button to speak, or type your message. You can ask about my capabilities, who built me, or general queries.",
+        "Assistance is right here: 1. Click mic to speak. 2. Or type in the text box. 3. Receive instant text and voice responses."
+      ]
+    },
+    {
+      "tag": "affirmation",
+      "patterns": [
+        "Yes",
+        "Sure",
+        "Okay",
+        "Yeah",
+        "Correct",
+        "Exactly",
+        "Sounds good",
+        "Alright",
+        "Of course"
+      ],
+      "responses": [
+        "Great! Let me know what you would like to explore next.",
+        "Understood. How can I assist you further?",
+        "Awesome! I am listening.",
+        "Got it! What else is on your mind?"
+      ]
+    },
+    {
+      "tag": "sentiment_positive",
+      "patterns": [
+        "You are awesome",
+        "You are smart",
+        "Great job",
+        "I love this chatbot",
+        "This is amazing",
+        "Cool project",
+        "Wonderful"
+      ],
+      "responses": [
+        "Thank you so much! That means a lot to me.",
+        "I'm thrilled you like it! It was built with passion for AI.",
+        "Glad to bring you a smooth voice and chat experience!"
+      ]
+    },
+    {
+      "tag": "sentiment_negative",
+      "patterns": [
+        "I am sad",
+        "I feel bad",
+        "I am bored",
+        "I am angry",
+        "This is bad",
+        "You are wrong"
+      ],
+      "responses": [
+        "I'm sorry to hear that. I am here to listen if you want to chat or hear a joke to cheer you up.",
+        "I apologize if I didn't answer properly. I am continuously learning and improving!",
+        "Take a deep breath. Let me know how I can make things better for you."
+      ]
+    },
+    {
+      "tag": "fallback",
+      "patterns": [
+        "asdfghjkl",
+        "xyz random gibberish",
+        "blablabla",
+        "unknown query phrase"
+      ],
+      "responses": [
+        "I'm not sure I understood that clearly. Could you please rephrase or try asking something else?",
+        "Sorry, I couldn't quite catch that. Try asking 'What can you do?' or tap the microphone to speak again.",
+        "I am still learning new phrases every day! Could you try asking in a slightly different way?"
+      ]
+    }
+  ]
+}
